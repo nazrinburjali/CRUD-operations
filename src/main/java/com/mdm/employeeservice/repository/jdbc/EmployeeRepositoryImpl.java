@@ -24,7 +24,7 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
     @Override
     public List<Employee> getEmployeeList() {
         String sql = "select id, name, surname, salary " +
-                "from employees";
+                "from employee";
 
         List<Employee>employeeList = jdbcTemplate.query(sql, employeeRowMapper);
         return employeeList;
@@ -33,7 +33,7 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
 
     @Override
     public void addEmployee(Employee employee) {
-        String sql = "insert into employees(name, surname, salary) " +
+        String sql = "insert into employee(name, surname, salary) " +
                 " values(:employee_name, :employee_surname, :employee_salary)";
 
         MapSqlParameterSource parameterSource = new MapSqlParameterSource("employee_name", employee.getName());
@@ -53,7 +53,7 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
     public Optional<Employee> getEmployeeById(long id) {
         Optional<Employee> optionalEmployee = Optional.empty();
         String sql = "select id, name, surname, salary " +
-                "from employees " +
+                "from employee " +
                 "where id = :employee_id";
 
         MapSqlParameterSource params =  new MapSqlParameterSource("employee_id", id);
@@ -66,7 +66,7 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
 
     @Override
     public void updateEmployee(long id, Employee employee) {
-        String sql = "update employees " +
+        String sql = "update employee " +
                 "set id=:new_employee_id, name=:employee_name, surname=:employee_surname, salary=:employee_salary "+
                 "where id=:employee_id";
 
@@ -85,7 +85,7 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
     }
     @Override
     public void deleteEmployee(long id) {
-        String sql = "delete from employees " +
+        String sql = "delete from employee " +
                 "where id=:employee_id";
 
         MapSqlParameterSource parameterSource = new MapSqlParameterSource("employee_id", id);
