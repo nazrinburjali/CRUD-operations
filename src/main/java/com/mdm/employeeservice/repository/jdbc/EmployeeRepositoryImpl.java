@@ -45,7 +45,7 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
 
         }
         if(saved < 0){
-            throw new RuntimeException("Error while adding employee");
+            System.out.println("employee was not created");
         }
     }
 
@@ -79,7 +79,7 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
         if (updated>0){
             System.out.println("Employee was updated");
         }else{
-            throw new RuntimeException("Id = " + id + " employee was not found");
+            System.out.println("Employee was not updated");
         }
 
     }
@@ -93,8 +93,7 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
         if (deleted>0){
             System.out.println("Employee was deleted");
         }else{
-
-            throw new RuntimeException("Id = " + id + " employee was not found");
+            System.out.println("Employee was not deleted");
         }
     }
 }

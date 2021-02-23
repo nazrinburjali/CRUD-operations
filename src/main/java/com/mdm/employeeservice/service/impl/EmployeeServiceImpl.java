@@ -69,11 +69,19 @@ public class EmployeeServiceImpl implements EmployeeService {
             employee.setSurname(employeeDto.getLastName());
             employee.setSalary(employeeDto.getSalary());
             employeeRepository.updateEmployee(id, employee);
+        }else{
+            throw new RuntimeException("Employee id  = " + id + " id was not found");
         }
     }
 
     @Override
     public void deleteEmployee(long id) {
-        employeeRepository.deleteEmployee(id);
+        Optional<Employee>optionalEmployee = employeeRepository.getEmployeeById(id);
+        if (optionalEmployee.isPresent()){
+            employeeRepository.deleteEmployee(id);
+        }else{
+            throw new RuntimeException("Employee id  = " + id + " id was not found");
+        }
+
     }
 }
